@@ -1,8 +1,7 @@
+import { MainPage } from "@/components/pages/MainPage";
 
 export default function Home() {
   return (
-    <div className=" text-orange">
-      Hello world
-    </div>
+    <MainPage/>
   );
 }
