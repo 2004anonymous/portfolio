@@ -6,8 +6,8 @@ import HeaderCTC from "./buttons/HeaderCTC";
 
 const Header = () => {
   return (
-    <div className=" min-h-20 pt-8 w-full bg-gradient-to-b from-black/80 via-black/50 to-transparent absolute z-[999] top-0 right-0 left-0 mx-auto">
-      <div className=" flex w-full max-w-[1600px] mx-auto h-full items-center justify-between">
+    <div className=" min-h-20 pt-5 w-full bg-gradient-to-b from-black/80 via-black/50 to-transparent absolute z-[999] top-0 right-0 left-0 mx-auto">
+      <div className=" flex w-full max-w-[1400px] mx-auto h-full items-center justify-between">
         <div>
           <Image
             alt="Logo"
@@ -25,7 +25,7 @@ const Header = () => {
           <HeaderCTC onClick={() => {}}>resume</HeaderCTC>
         </div>
 
-        <Button className=" py-4 px-8 rounded-full">Get in touch</Button>
+        <Button className=" py-3 bg-white text-black hover:text-white px-8 rounded-full">Get in touch</Button>
       </div>
     </div>
   );
