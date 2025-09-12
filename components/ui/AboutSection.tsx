@@ -7,6 +7,16 @@ import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
 const AboutSection = () => {
   return (
     <div className=" w-full bg-slate-50/10 px-5 md:px-20 py-16 space-y-6">
+      {/* <div className=" rounded-3xl mx-auto min-w-[600px] max-h-[500px] w-full overflow-hidden">
+        <Image
+          alt="Developer Image"
+          src={"/hiring.png"}
+          width={5000}
+          height={5000}
+          className=" w-full h-full object-cover"
+        />
+      </div> */}
+
       <SectionCTC text="About me" />
       <div className=" flex items-center justify-between pb-6">
         <div className=" text-xl text-white leading-8 max-w-[45%] font-[200]">
