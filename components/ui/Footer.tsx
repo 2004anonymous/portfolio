@@ -18,13 +18,15 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-start">
           <div className="w-full md:w-[40%] h-auto">
             <div className=" flex items-center justify-start">
-              <Image
-                alt="Rahul Logo"
-                src={"/ic_logo.png"}
-                height={100}
-                width={100}
-                className=" h-10 w-10"
-              />
+              <div className=" rounded-lg bg-slate-50/30 p-1 shadow shadow-gray-500/50 me-2">
+                <Image
+                  alt="Rahul Logo"
+                  src={"/ic_logo.png"}
+                  height={100}
+                  width={100}
+                  className=" h-7 w-7"
+                />
+              </div>
               <div>
                 <p className=" text-xs leading-[14px] text-slate-50/50">
                   @Portfolio <br />{" "}

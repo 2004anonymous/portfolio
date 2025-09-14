@@ -8,7 +8,7 @@ type Props = {
 
 const HeaderCTC = ({ children, onClick }: Props) => {
   return (
-    <div onClick={onClick} className=" font-medium text-xs tracking-[1px] uppercase cursor-pointer">
+    <div onClick={onClick} className=" text-xs capitalize cursor-pointer">
       {children}
     </div>
   );

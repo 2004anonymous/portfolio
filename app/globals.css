@@ -17,7 +17,7 @@
 
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
   --animate-background: backgroundPulse 2s ease 1s infinite;
-    --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
+  --animate-cell-ripple: cell-ripple var(--duration, 200ms) ease-out none 1
     var(--delay, 0ms);
 
 }

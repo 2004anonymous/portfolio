@@ -1,6 +1,7 @@
 import React from "react";
 import SectionCTC from "../widgets/buttons/SectionCTC";
 import { Qualifications } from "@/lib/constants";
+import { ArrowRight } from "lucide-react";
 
 const Qualification = () => {
   return (
@@ -29,6 +30,15 @@ const Qualification = () => {
           />
         ))}
       </div>
+
+      <div className=" flex items-center justify-center mt-8">
+        <div className=" flex items-center text-xs">
+          <p className=" text-slate-50/40 me-4"> • Check out More</p> <div className=" hover:animate-slide-right cursor-pointer space-x-1 text-slate-50/80 flex items-center">
+            <ArrowRight size={18}/> <span>View More</span>
+          </div>
+        </div>
+      </div>
+
     </div>
   );
 };

@@ -2,7 +2,7 @@ import React from "react";
 import SectionCTC from "../widgets/buttons/SectionCTC";
 import Image from "next/image";
 import Button from "../widgets/buttons/Button";
-import { Facebook, Github, Instagram, Linkedin } from "lucide-react";
+import { ArrowUpRight, Facebook, Github, Instagram, Linkedin } from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -68,6 +68,11 @@ const AboutSection = () => {
           />
         </div>
       </div>
+
+        <div className=" flex items-center justify-center mt-10 group">
+          <p className=" text-sm cursor-pointer text-slate-50/60 group-hover:text-white duration-300 underline pb-0.5 me-1 ">More about Me</p> <ArrowUpRight size={20} className=" group-hover:rotate-45 duration-300 transition-all"/>
+        </div>
+
     </div>
   );
 };
