@@ -18,7 +18,7 @@ const Footer = () => {
         <div className="flex flex-col md:flex-row items-start">
           <div className="w-full md:w-[40%] h-auto">
             <div className=" flex items-center justify-start">
-              <div className=" rounded-lg bg-slate-50/30 p-1 shadow shadow-gray-500/50 me-2">
+              <div className=" rounded-lg bg-black p-1 shadow shadow-gray-500/50 me-2">
                 <Image
                   alt="Rahul Logo"
                   src={"/ic_logo.png"}

@@ -1,7 +1,7 @@
 import React from "react";
 import SectionCTC from "../widgets/buttons/SectionCTC";
 import { Qualifications } from "@/lib/constants";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, ArrowUpRight } from "lucide-react";
 
 const Qualification = () => {
   return (
@@ -33,8 +33,8 @@ const Qualification = () => {
 
       <div className=" flex items-center justify-center mt-8">
         <div className=" flex items-center text-xs">
-          <p className=" text-slate-50/40 me-4"> • Check out More</p> <div className=" hover:animate-slide-right cursor-pointer space-x-1 text-slate-50/80 flex items-center">
-            <ArrowRight size={18}/> <span>View More</span>
+          <p className=" text-slate-50/40 me-4">Check out More • </p> <div className=" hover:animate-slide-right cursor-pointer space-x-1 text-slate-50/80 flex items-center">
+             <span className=" underline">View More</span> <ArrowUpRight size={18}/>
           </div>
         </div>
       </div>
@@ -57,7 +57,7 @@ const ExperienceCard = ({
   duration,
 }: ExperienceCardProps) => {
   return (
-    <div className=" transition-all duration-300 hover:px-10 flex py-8 items-center justify-between bg-gradient-to-r from-transparent via-slate-50/10 to-transparent">
+    <div className=" transition-all duration-300 hover:px-10 flex py-9 items-center justify-between bg-gradient-to-r from-transparent via-slate-50/10 to-transparent">
       <div>
         <h4>{title}</h4>
         <p className=" text-slate-50/50 text-xs mt-2">{description}</p>

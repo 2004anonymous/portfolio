@@ -18,11 +18,12 @@ const Header = () => {
             className=" h-7 w-7"
           />
           </div>
-          <div className=" flex items-center justify-center space-x-14">
-          <HeaderCTC onClick={() => {}}>More about me</HeaderCTC>
+          <div className=" flex items-center justify-center space-x-12">
+          <HeaderCTC onClick={() => {}}>about me</HeaderCTC>
           <HeaderCTC onClick={() => {}}>education</HeaderCTC>
           <HeaderCTC onClick={() => {}}>projects</HeaderCTC>
           <HeaderCTC onClick={() => {}}>resume</HeaderCTC>
+          <HeaderCTC onClick={() => {}}>Blog</HeaderCTC>
         </div>
         </div>
 
