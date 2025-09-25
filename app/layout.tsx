@@ -1,7 +1,27 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
-import Head from "next/head";
+import localFont from "next/font/local";
+
+const fontMs = localFont({
+  src: "../public/fonts/Montserrat-Medium.ttf",
+  variable: "--font-ms",
+});
+
+const fontQalisso = localFont({
+  src: "../public/fonts/Qalisso.otf",
+  variable: "--font-qalisso",
+});
+
+const fontZllight = localFont({
+  src: "../public/fonts/ZalandoSansExpanded-Light.ttf",
+  variable: "--font-zllight",
+});
+
+const fontZlBold = localFont({
+  src: "../public/fonts/ZalandoSansExpanded-Bold.ttf",
+  variable: "--font-zlbold",
+});
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -35,7 +55,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fontMs.variable} ${fontZllight.variable} ${fontZlBold.variable} ${fontQalisso.variable} antialiased`}
       >
         {children}
       </body>

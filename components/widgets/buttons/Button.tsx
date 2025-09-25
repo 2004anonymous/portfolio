@@ -11,9 +11,11 @@ type ButtonProps = {
   disabled?: boolean;
   onClick?: () => void;
   icon?: ReactNode;
+  iconPosition?: "left" | "right";
 };
 
 const Button: React.FC<ButtonProps> = ({
+  iconPosition = "left",
   children,
   variant = "primary",
   className = "",
@@ -46,8 +48,13 @@ const Button: React.FC<ButtonProps> = ({
         className
       )}
     >
-      {icon && <div className={` ${children ? "pe-2" : ""}`}>{icon}</div>}
+      {icon && iconPosition === "left" && (
+        <div className={` ${children ? "pe-2" : ""}`}>{icon}</div>
+      )}
       {children}
+      {icon && iconPosition === "right" && (
+        <div className={` ${children ? "ps-2" : ""}`}>{icon}</div>
+      )}
     </button>
   );
 };

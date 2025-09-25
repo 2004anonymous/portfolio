@@ -2,7 +2,13 @@ import React from "react";
 import SectionCTC from "../widgets/buttons/SectionCTC";
 import Image from "next/image";
 import Button from "../widgets/buttons/Button";
-import { ArrowUpRight, Facebook, Github, Instagram, Linkedin } from "lucide-react";
+import {
+  ArrowUpRight,
+  Facebook,
+  Github,
+  Instagram,
+  Linkedin,
+} from "lucide-react";
 
 const AboutSection = () => {
   return (
@@ -19,7 +25,7 @@ const AboutSection = () => {
 
       <SectionCTC text="About me" />
       <div className=" flex items-center justify-between pb-6">
-        <div className=" text-xl text-white leading-8 max-w-[45%] font-[200]">
+        <div className=" text-2xl text-white leading-10 max-w-[45%] font-[200]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
           possimus doloremque reprehenderit saepe,
         </div>
@@ -69,10 +75,15 @@ const AboutSection = () => {
         </div>
       </div>
 
-        <div className=" flex items-center justify-center mt-10 group">
-          <p className=" text-sm cursor-pointer text-slate-50/60 group-hover:text-white duration-300 underline pb-0.5 me-1 ">More about Me</p> <ArrowUpRight size={20} className=" group-hover:rotate-45 duration-300 transition-all"/>
-        </div>
-
+      <div className=" flex items-center justify-center mt-10 group">
+        <p className=" text-sm cursor-pointer text-slate-50/60 group-hover:text-white duration-300 underline pb-0.5 me-1 ">
+          More about Me
+        </p>{" "}
+        <ArrowUpRight
+          size={20}
+          className=" group-hover:rotate-45 duration-300 transition-all"
+        />
+      </div>
     </div>
   );
 };

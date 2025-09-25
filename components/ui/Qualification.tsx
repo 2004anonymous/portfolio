@@ -9,7 +9,7 @@ const Qualification = () => {
       <SectionCTC text="Qualifications" />
 
       <div className=" flex items-center justify-between pb-6 mt-6">
-        <div className=" text-xl text-white leading-8 max-w-[45%] font-[200]">
+        <div className=" text-2xl text-white leading-10 max-w-[45%] font-[200]">
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
           possimus doloremque reprehenderit saepe,
         </div>

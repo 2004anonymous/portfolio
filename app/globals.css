@@ -5,12 +5,23 @@
   --foreground: #ffffff;
 }
 
+@layer utilities {
+  .text-stroke {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgba(255, 255, 255, 0.261);
+  }
+}
+
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --font-poppins: var(--font-poppins);
+  --font-ms: var(--font-ms);
+  --font-zllight: var(--font-zllight);
+  --font-zlbold: var(--font-zlbold);
+  --font-qalisso: var(--font-qalisso);
 
   --color-primary: #27F576;
   --color-orange: #F59F27;
