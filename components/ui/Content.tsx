@@ -4,6 +4,7 @@ import { BackgroundRippleEffect } from "./RippleBack";
 import { Highlight } from "../ui/hero";
 import { motion } from "motion/react";
 import { Spotlight } from "./Spotlight";
+import { SkillCard } from "@/app/page";
 
 export function BackgroundRippleEffectDemo() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -27,6 +28,19 @@ export function BackgroundRippleEffectDemo() {
       className="relative flex min-h-screen w-full flex-col items-start justify-start overflow-hidden"
     >
       <Spotlight className=" left-1/5" />
+      {/* <div className=" absolute bottom-0 right-0 left-0 py-20">
+        <div className=" w-full px-30 flex items-center space-x-10">
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+          <SkillCard />
+        </div>
+      </div> */}
       <div className="mt-60 w-full flex flex-col">
         <p className=" text-xs text-white font-zllight uppercase text-center tracking-[10px]">
           Software Developer

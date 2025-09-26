@@ -7,21 +7,25 @@ import LargeWorkCard from "../widgets/LargeWorkCard";
 const WorkCard = [
   {
     id: 1,
+    projectImage: "/img_pone.webp",
     title: "Project One",
     description: "Description for project one.",
   },
   {
     id: 2,
+    projectImage: "/img_ptwo.webp",
     title: "Project Two",
     description: "Description for project two.",
   },
   {
     id: 3,
+    projectImage: "/img_pthree.webp",
     title: "Project Three",
     description: "Description for project three.",
   },
   {
     id: 4,
+    projectImage: "/img_pone.webp",
     title: "Project Four",
     description: "Description for project four.",
   },
@@ -62,7 +66,7 @@ const Work = () => {
           </span>
           <div className=" flex items-start justify-between">
             <div className=" mt-5 text-4xl text-black md:text-5xl lg:text-5xl leading-[60px] font-zlbold uppercase">
-              <span className=" text-[#F54927]">Highlights</span> of <br /> my
+              <span className=" text-red-primary">Highlights</span> of <br /> my
               works and experiences
             </div>
             <div className=" w-[40%] ms-10">
@@ -86,15 +90,14 @@ const Work = () => {
 
       <div ref={containerRef} className="overflow-hidden w-full">
         <div
-          className=" pt-10 flex space-x-10 transition-transform duration-300"
+          className=" px-5 pt-10 flex space-x-10 transition-transform duration-300"
           style={{
             transform: `translateX(-${currentIndex * cardWidth}px)`,
           }}
         >
-          <LargeWorkCard />
-          <LargeWorkCard />
-          <LargeWorkCard />
-          <LargeWorkCard />
+          {WorkCard.map((card) => (
+            <LargeWorkCard poster={card.projectImage} key={card.id} />
+          ))}
         </div>
         {/* Arrows */}
         <div className="flex space-x-4 w-full justify-center items-center mt-5">

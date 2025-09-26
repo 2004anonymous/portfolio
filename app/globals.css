@@ -10,6 +10,11 @@
     -webkit-text-stroke-width: 2px;
     -webkit-text-stroke-color: rgba(255, 255, 255, 0.261);
   }
+
+    .text-stroke-light {
+    -webkit-text-stroke-width: 2px;
+    -webkit-text-stroke-color: rgb(255, 98, 0);
+  }
 }
 
 @theme inline {
@@ -25,6 +30,7 @@
 
   --color-primary: #27F576;
   --color-orange: #F59F27;
+  --color-red-primary: #F54927;
 
   --animate-spotlight: spotlight 2s ease 0.75s 1 forwards;
   --animate-background: backgroundPulse 2s ease 1s infinite;
