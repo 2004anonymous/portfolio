@@ -1,3 +1,4 @@
+"use client";
 import AboutSection from "@/components/ui/AboutSection";
 import { BackgroundRippleEffectDemo } from "@/components/ui/Content";
 import Footer from "@/components/ui/Footer";
@@ -6,6 +7,7 @@ import Work from "@/components/ui/Work";
 import Button from "@/components/widgets/buttons/Button";
 import Header from "@/components/widgets/Header";
 import { ArrowUpRight } from "lucide-react";
+import { motion } from "motion/react";
 import Image from "next/image";
 
 export default function Home() {
@@ -16,7 +18,13 @@ export default function Home() {
       <Work />
       <AboutSection />
       <Qualification />
-      <div className=" flex items-center justify-center bg-black px-6 py-20">
+      <motion.div
+        initial={{ opacity: 0, y: 50 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: false, amount: "all" }}
+        transition={{ duration: 0.8 }}
+        className=" flex items-center justify-center bg-black px-6 py-20"
+      >
         <div className="w-full max-w-6xl bg-neutral-900 border-dashed border border-neutral-800 grid md:grid-cols-2 overflow-hidden">
           {/* Left Section */}
           <div className="p-10 flex flex-col justify-center">
@@ -73,7 +81,7 @@ export default function Home() {
             </div>
           </div>
         </div>
-      </div>
+      </motion.div>
       <Footer />
     </div>
   );

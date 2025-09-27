@@ -1,13 +1,19 @@
 import React from "react";
 import Image from "next/image";
 import { ArrowUpRight } from "lucide-react";
-  type Props = {
-    poster: string;
-  };
+import { motion } from "framer-motion";
+type Props = {
+  poster: string;
+};
 const LargeWorkCard = ({ poster }: Props) => {
-
   return (
-    <div className="min-w-[40%] relative overflow-hidden  min-h-[500px] group transition-all duration-300 hover:scale-90 rounded-2xl">
+    <motion.div
+      initial={{ opacity: 0 }}
+      whileInView={{ opacity: 1 }}
+      viewport={{ once: false, amount: 0.2 }}
+      transition={{ duration: 1 }}
+      className="min-w-[40%] relative overflow-hidden  min-h-[500px] group transition-all duration-300 hover:scale-90 rounded-2xl"
+    >
       <Image
         height={1000}
         width={1000}
@@ -20,7 +26,7 @@ const LargeWorkCard = ({ poster }: Props) => {
           <ArrowUpRight size={30} />
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 
