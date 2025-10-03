@@ -1,5 +1,6 @@
 "use client";
 import AboutSection from "@/components/ui/AboutSection";
+import AdminLogin from "@/components/ui/AdminLogin";
 import { BackgroundRippleEffectDemo } from "@/components/ui/Content";
 import Footer from "@/components/ui/Footer";
 import Qualification from "@/components/ui/Qualification";
@@ -18,6 +19,9 @@ export default function Home() {
       <Qualification />
       <TestimonialSection/>
       <Footer />
+
+      {/* admin login */}
+      <AdminLogin />
     </div>
   );
 }
