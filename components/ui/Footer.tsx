@@ -8,7 +8,7 @@ const Footer = () => {
     <div className=" h-auto bg-black py-20 px-20 w-full">
       <div className=" flex items-start justify-between">
         <div className=" text-7xl leading-[85px]">
-          Let's Connect <br /> There
+          Let&apos;s Connect <br /> There
         </div>
         <SlideButton />
       </div>

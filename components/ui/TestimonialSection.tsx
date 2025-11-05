@@ -37,7 +37,7 @@ const TestimonialSection = () => {
               iconPosition="right"
               className=" rounded-none bg-black border-none text-sm py-3 text-white"
             >
-              Let's Talk
+              Let&apos;s Talk
             </Button>
           </div>
         </div>

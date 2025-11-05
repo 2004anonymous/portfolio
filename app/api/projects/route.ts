@@ -14,8 +14,9 @@ export async function POST(req: Request) {
   const body = await req.json();
   const project = await prisma.project.create({
     data: {
-      title: body.title,
+      name: body.title ?? body.name,
       description: body.description,
+      poster: body.poster ?? "",
       link: body.link,
     },
   });

@@ -17,6 +17,10 @@ const eslintConfig = [
       ".next/**",
       "out/**",
       "build/**",
+      // Ignore generated Prisma client/wasm bundles which include patterns
+      // that violate some ESLint rules (require(), this aliasing, etc.).
+      // These files are generated and should not be linted.
+      "lib/generated/**",
       "next-env.d.ts",
     ],
   },

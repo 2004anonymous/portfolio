@@ -21,7 +21,7 @@ export default function Home() {
       <Footer />
 
       {/* admin login */}
-      <AdminLogin />
+      {/* <AdminLogin /> */}
     </div>
   );
 }
