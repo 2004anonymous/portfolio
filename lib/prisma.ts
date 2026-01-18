@@ -1,16 +1,15 @@
-// Import the generated Prisma client directly from the local output folder.
-// The project uses a custom generator output (lib/generated/prisma), so
-// importing from "@prisma/client" fails at build time when the package
-// expects the generated client in node_modules. Importing directly
-// ensures the generated client is used.
-import { PrismaClient } from "./generated/prisma";
+import { PrismaClient } from "@prisma/client";
 
-const globalForPrisma = global as unknown as { prisma: PrismaClient };
+declare global {
+  // allow global `var` in NodeJS
+  // eslint-disable-next-line no-var
+  var prisma: PrismaClient | undefined;
+}
 
 export const prisma =
-  globalForPrisma.prisma ||
+  global.prisma ||
   new PrismaClient({
     log: ["query"],
   });
 
-if (process.env.NODE_ENV !== "production") globalForPrisma.prisma = prisma;
+if (process.env.NODE_ENV !== "production") global.prisma = prisma;

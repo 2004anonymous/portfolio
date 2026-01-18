@@ -8,17 +8,3 @@ export async function GET() {
   });
   return NextResponse.json(projects);
 }
-
-// POST new project
-export async function POST(req: Request) {
-  const body = await req.json();
-  const project = await prisma.project.create({
-    data: {
-      name: body.title ?? body.name,
-      description: body.description,
-      poster: body.poster ?? "",
-      link: body.link,
-    },
-  });
-  return NextResponse.json(project);
-}
