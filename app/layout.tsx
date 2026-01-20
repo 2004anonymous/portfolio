@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono, Poppins } from "next/font/google";
 import "./globals.css";
 import localFont from "next/font/local";
+import ToastProvider from "@/components/ToastProvider";
 
 const fontMs = localFont({
   src: "../public/fonts/Montserrat-Medium.ttf",
@@ -58,6 +59,7 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} ${poppins.variable} ${fontMs.variable} ${fontZllight.variable} ${fontZlBold.variable} ${fontQalisso.variable} antialiased`}
       >
         {children}
+        <ToastProvider/>
       </body>
     </html>
   );

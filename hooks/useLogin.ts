@@ -1,5 +1,4 @@
 import { ApiResponse } from '@/types/common';
-import { tr } from 'framer-motion/client';
 import React, { useState } from 'react'
 
 interface LoginData {
@@ -14,7 +13,6 @@ interface LoginResponse {
 const useLogin = () => {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
-  const [token, setToken] = useState<string | null>(null)
 
   const login = async (data: LoginData) => {
     setLoading(true)
@@ -36,24 +34,22 @@ const useLogin = () => {
       if (!res.ok || !result.success) {
         setError(result.message || 'Login failed')
         setLoading(false)
-        return false
+        return null
       }
 
-      console.log(`Login Response Token: ${result}`)
-      setToken(result.data?.token || null)
+      console.log(`Login Response: ${result}`)
       setLoading(false)
-      return true
+      return result.data?.token || null
 
     } catch (err: any) {
       setError(err.message || "Something went wrong")
       setLoading(false)
-      return false
+      return null
     }
   }
   return {
     loading,
     error,
-    token,
     login
   }
 }

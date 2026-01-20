@@ -30,10 +30,22 @@ export async function POST(req: NextRequest) {
     const token = jwt.sign(
       { id: admin.id, email: admin.email, role: admin.role },
       process.env.JWT_SECRET as string,
-      { expiresIn: "1h" }
+      { expiresIn: "1h" },
     );
 
-    return sendResponse({ token }, "Login successful");
+    return sendResponse({token}, "Login successful", true, 200, [
+      {
+        name: "admin_token",
+        value: token,
+        options: {
+          httpOnly: true,
+          secure: process.env.NODE_ENV === "production",
+          sameSite: "strict",
+          path: "/",
+          maxAge: 60 * 60 * 24,
+        },
+      },
+    ]);
   } catch (error: any) {
     return sendError(error.message || "Something went wrong", 500);
   }

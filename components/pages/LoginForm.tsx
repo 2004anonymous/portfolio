@@ -3,6 +3,8 @@
 import { useState } from "react";
 import { Eye, EyeOff, Lock, Mail } from "lucide-react";
 import useLogin from "@/hooks/useLogin";
+import { useRouter } from "next/navigation";
+import { toast } from "react-toastify";
 
 export default function LoginForm() {
   const [email, setEmail] = useState("");
@@ -10,25 +12,30 @@ export default function LoginForm() {
   const [showPassword, setShowPassword] = useState(false);
   const [focusedField, setFocusedField] = useState<string | null>(null);
 
-  const {loading, error, token, login} = useLogin()
+  const { loading, error, login } = useLogin();
+
+  const router = useRouter();
 
   const handleSubmit = async () => {
-    
-    const success = await login({
-        email: email.trim(),
-        password: password.trim()
-    })
+    const token = await login({
+      email: email.trim(),
+      password: password.trim(),
+    });
 
-    if(success){
-        alert("Login successful! Token: "+token)
-    }else{
-        alert("Login Failed")
+    if (token) {
+      console.log("Login Successful, Token: " + token);
+      toast.success("Login successful!");
+      setTimeout(() => {
+        router.push("/admin");
+      }, 1000);
+    } else {
+      toast.error("Login failed!");
+      console.log("Login Failed: " + error);
     }
-
   };
 
   const handleKeyPress = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && email && password) {
+    if (e.key === "Enter" && email && password) {
       handleSubmit();
     }
   };
@@ -38,7 +45,9 @@ export default function LoginForm() {
       <div className="w-full max-w-md px-6">
         {/* Header */}
         <div className="text-center mb-16">
-          <h1 className="text-5xl font-light text-white mb-3 tracking-tight">Admin</h1>
+          <h1 className="text-5xl font-light text-white mb-3 tracking-tight">
+            Admin
+          </h1>
           <p className="text-gray-400 text-sm">🔒 Secure Access Portal</p>
         </div>
 
@@ -46,22 +55,26 @@ export default function LoginForm() {
         <div className="space-y-12">
           {/* Email Field */}
           <div className="relative">
-            <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${
-              focusedField === 'email' || email 
-                ? '-top-6 text-xs text-white' 
-                : 'top-2 left-8 text-base text-gray-500'
-            }`}>
+            <label
+              className={`absolute left-0 transition-all duration-300 pointer-events-none ${
+                focusedField === "email" || email
+                  ? "-top-6 text-xs text-white"
+                  : "top-2 left-8 text-base text-gray-500"
+              }`}
+            >
               Email
             </label>
             <div className="flex items-center gap-4">
-              <Mail className={`w-5 h-5 transition-all duration-300 ${
-                focusedField === 'email' ? 'text-white' : 'text-gray-600'
-              }`} />
+              <Mail
+                className={`w-5 h-5 transition-all duration-300 ${
+                  focusedField === "email" ? "text-white" : "text-gray-600"
+                }`}
+              />
               <input
                 type="email"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                onFocus={() => setFocusedField('email')}
+                onFocus={() => setFocusedField("email")}
                 onBlur={() => setFocusedField(null)}
                 onKeyPress={handleKeyPress}
                 className="flex-1 bg-transparent text-white text-lg outline-none pb-3 transition-all duration-300"
@@ -69,30 +82,36 @@ export default function LoginForm() {
             </div>
             <div className="relative h-px mt-1">
               <div className="absolute inset-0 bg-gray-800" />
-              <div className={`absolute inset-0 bg-white transition-all duration-300 origin-left ${
-                focusedField === 'email' ? 'scale-x-100' : 'scale-x-0'
-              }`} />
+              <div
+                className={`absolute inset-0 bg-white transition-all duration-300 origin-left ${
+                  focusedField === "email" ? "scale-x-100" : "scale-x-0"
+                }`}
+              />
             </div>
           </div>
 
           {/* Password Field */}
           <div className="relative">
-            <label className={`absolute left-0 transition-all duration-300 pointer-events-none ${
-              focusedField === 'password' || password 
-                ? '-top-6 text-xs text-white' 
-                : 'top-2 left-8 text-base text-gray-500'
-            }`}>
+            <label
+              className={`absolute left-0 transition-all duration-300 pointer-events-none ${
+                focusedField === "password" || password
+                  ? "-top-6 text-xs text-white"
+                  : "top-2 left-8 text-base text-gray-500"
+              }`}
+            >
               Password
             </label>
             <div className="flex items-center gap-4">
-              <Lock className={`w-5 h-5 transition-all duration-300 ${
-                focusedField === 'password' ? 'text-white' : 'text-gray-600'
-              }`} />
+              <Lock
+                className={`w-5 h-5 transition-all duration-300 ${
+                  focusedField === "password" ? "text-white" : "text-gray-600"
+                }`}
+              />
               <input
                 type={showPassword ? "text" : "password"}
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                onFocus={() => setFocusedField('password')}
+                onFocus={() => setFocusedField("password")}
                 onBlur={() => setFocusedField(null)}
                 onKeyPress={handleKeyPress}
                 className="flex-1 bg-transparent text-white text-lg outline-none pb-3 transition-all duration-300"
@@ -102,14 +121,20 @@ export default function LoginForm() {
                 onClick={() => setShowPassword(!showPassword)}
                 className="text-gray-600 hover:text-white transition-colors duration-300"
               >
-                {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
+                {showPassword ? (
+                  <EyeOff className="w-5 h-5" />
+                ) : (
+                  <Eye className="w-5 h-5" />
+                )}
               </button>
             </div>
             <div className="relative h-px mt-1">
               <div className="absolute inset-0 bg-gray-800" />
-              <div className={`absolute inset-0 bg-white transition-all duration-300 origin-left ${
-                focusedField === 'password' ? 'scale-x-100' : 'scale-x-0'
-              }`} />
+              <div
+                className={`absolute inset-0 bg-white transition-all duration-300 origin-left ${
+                  focusedField === "password" ? "scale-x-100" : "scale-x-0"
+                }`}
+              />
             </div>
           </div>
 

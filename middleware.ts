@@ -2,10 +2,12 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 export function middleware(req: NextRequest) {
-  const token = req.headers.get("authorization");
 
-  if (token !== process.env.ADMIN_TOKEN) {
-    return NextResponse.json({ message: "Unauthorized" }, { status: 401 });
+  const token = req.cookies.get("admin_token")
+
+  if (!token && req.nextUrl.pathname.startsWith("/admin")) {
+    console.log("No token found, redirecting to /")
+    return NextResponse.redirect(new URL("/", req.url))
   }
 
   return NextResponse.next();
