@@ -4,13 +4,19 @@ import type { NextRequest } from "next/server";
 export function middleware(req: NextRequest) {
 
   const token = req.cookies.get("admin_token")
+  const { pathname } = req.nextUrl
 
-  if (!token && req.nextUrl.pathname.startsWith("/admin")) {
-    console.log("No token found, redirecting to /")
+   // Allow login route
+  if (pathname === "/secure_auth") {
+    return NextResponse.next()
+  }
+
+  // Protect admin pages & APIs
+  if (!token && pathname.startsWith("/admin")) {
     return NextResponse.redirect(new URL("/", req.url))
   }
 
-  return NextResponse.next();
+  return NextResponse.next()
 }
 
 // Config to specify which routes middleware applies to
