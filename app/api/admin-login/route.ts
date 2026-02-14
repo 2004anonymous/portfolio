@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
       { expiresIn: "1h" },
     );
 
-    return sendResponse({token}, "Login successful", true, 200, [
+    return sendResponse({ token }, "Login successful", true, 200, [
       {
         name: "admin_token",
         value: token,
@@ -46,7 +46,11 @@ export async function POST(req: NextRequest) {
         },
       },
     ]);
-  } catch (error: any) {
-    return sendError(error.message || "Something went wrong", 500);
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return sendError(error.message, 500);
+    }
+
+    return sendError("Something went wrong", 500);
   }
 }
