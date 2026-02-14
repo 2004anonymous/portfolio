@@ -1,37 +1,52 @@
 // components/Header.tsx
-import React from 'react'
-import { Search, Bell, User } from 'lucide-react'
+'use client';
 
-const Header = () => {
+import { Bell, Search, Menu } from 'lucide-react';
+import { useState } from 'react';
+
+export default function Header() {
+  const [searchQuery, setSearchQuery] = useState('');
+
   return (
-    <header className="bg-white border-b border-gray-200 px-6 py-4">
-      <div className="flex items-center justify-between">
-        <div className="flex items-center space-x-4">
-          <div className="relative">
-            <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400 w-5 h-5" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent"
-            />
+    <header className="bg-white shadow-sm border-b border-gray-200">
+      <div className="px-6 py-4 flex items-center justify-between">
+        <div className="flex items-center flex-1">
+          <button className="lg:hidden mr-4">
+            <Menu className="h-6 w-6 text-gray-500" />
+          </button>
+          <div className="max-w-lg w-full">
+            <div className="relative">
+              <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                <Search className="h-5 w-5 text-gray-400" />
+              </div>
+              <input
+                type="search"
+                className="block w-full pl-10 pr-3 py-2 border border-gray-300 rounded-xl leading-5 bg-white placeholder-gray-500 focus:outline-none focus:placeholder-gray-400 focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm"
+                placeholder="Search projects, messages, users..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+              />
+            </div>
           </div>
         </div>
-        
         <div className="flex items-center space-x-4">
-          <button className="relative p-2 text-gray-600 hover:text-gray-900">
-            <Bell className="w-6 h-6" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-red-500 rounded-full"></span>
+          <button className="relative p-1 text-gray-500 hover:text-gray-700">
+            <Bell className="h-6 w-6" />
+            <span className="absolute top-0 right-0 block h-2 w-2 rounded-full bg-red-400 ring-2 ring-white"></span>
           </button>
           <div className="flex items-center space-x-3">
-            <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-              <User className="w-5 h-5 text-blue-600" />
+            <div className="hidden md:block">
+              <p className="text-sm font-medium text-gray-700">John Doe</p>
+              <p className="text-xs text-gray-500">Admin</p>
             </div>
-            <span className="text-gray-700 font-medium">Admin</span>
+            <img
+              className="h-9 w-9 rounded-full"
+              src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+              alt="Admin"
+            />
           </div>
         </div>
       </div>
     </header>
-  )
+  );
 }
-
-export default Header

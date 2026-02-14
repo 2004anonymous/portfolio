@@ -1,251 +1,168 @@
-export default function Home() {
-  const employees = [
-    {
-      name: "Anatomic Belik",
-      jobTitle: "Head of Design",
-      department: "Product",
-      site: "Stockholm",
-      salary: "$1,350",
-      startDate: "Mar 13, 2023",
-      lifecycle: "Hired",
-      status: "Invited",
-      statusColor: "bg-blue-100 text-blue-800"
-    },
-    {
-      name: "Ksenia Bator",
-      jobTitle: "Fullstack Engineer",
-      department: "Engineering",
-      site: "Miami",
-      salary: "$1,500",
-      startDate: "Oct 13, 2023",
-      lifecycle: "Hired",
-      status: "Absent",
-      statusColor: "bg-red-100 text-red-800"
-    },
-    {
-      name: "Bogdan Nikitin",
-      jobTitle: "Mobile Lead",
-      department: "Product",
-      site: "Kyiv",
-      salary: "$2,600",
-      startDate: "Nov 4, 2023",
-      lifecycle: "Employed",
-      status: "Invited",
-      statusColor: "bg-blue-100 text-blue-800"
-    },
-    {
-      name: "Arsen Yatsenko",
-      jobTitle: "Sales Manager",
-      department: "Operations",
-      site: "Ottawa",
-      salary: "$900",
-      startDate: "Sep 4, 2021",
-      lifecycle: "Employed",
-      status: "Invited",
-      statusColor: "bg-blue-100 text-blue-800"
-    },
-    {
-      name: "Daria Yurchenko",
-      jobTitle: "Network engineer",
-      department: "Product",
-      site: "Sao Paulo",
-      salary: "$1,000",
-      startDate: "Feb 21, 2023",
-      lifecycle: "Hired",
-      status: "Invited",
-      statusColor: "bg-blue-100 text-blue-800"
-    },
-    {
-      name: "Yulia Polishchuk",
-      jobTitle: "Head of Design",
-      department: "Product",
-      site: "London",
-      salary: "$1,700",
-      startDate: "Aug 2, 2024",
-      lifecycle: "Employed",
-      status: "Absent",
-      statusColor: "bg-red-100 text-red-800"
-    }
-  ];
+"use client";
 
-  const tabs = ["Columns", "Department", "Site", "Lifecycle", "Status", "Entity", "Search"];
+import { useState } from "react";
+import { motion } from "framer-motion";
+import { Plus, Trash2, Edit } from "lucide-react";
+import Dashboard, { Project } from "@/components/admin/Dashboard";
+
+
+export default function DashboardPage() {
+  const [projects, setProjects] = useState<Project[]>([
+    {
+    id: 1,
+    name: "Personal Portfolio",
+    type: "Web",
+    description:
+      "A modern personal portfolio website showcasing projects, skills, and contact information with a clean dark UI.",
+    poster: "/images/portfolio.png",
+    link: "https://yourportfolio.com",
+    githubLink: "https://github.com/yourusername/portfolio",
+    tag: "Next.js, Tailwind",
+    published: true,
+    createdAt: new Date("2024-11-12"),
+  },
+  {
+    id: 2,
+    name: "Movie Streaming App",
+    type: "Android",
+    description:
+      "An Android application for browsing and streaming movies and series with search, filters, and pagination.",
+    poster: "/images/movie-app.png",
+    link: "",
+    githubLink: "https://github.com/yourusername/movie-app",
+    tag: "Kotlin, MVVM",
+    published: false,
+    createdAt: new Date("2024-12-02"),
+  },
+  ]);
+
+  const [open, setOpen] = useState(false);
+
+  const deleteProject = (id: number) => {
+    setProjects(projects.filter((p) => p.id !== id));
+  };
 
   return (
-    <div className="min-h-screen bg-gray-50 p-4 md:p-8">
-      <div className="max-w-7xl mx-auto">
+    <div className="min-h-screen bg-black text-gray-200 flex">
+      {/* Sidebar */}
+      <aside className="hidden md:flex w-64 bg-zinc-900 border-r border-zinc-800 flex-col p-6">
+        <h1 className="text-xl font-semibold tracking-wide">Admin</h1>
+        <p className="text-sm text-gray-500 mb-8">Portfolio Dashboard</p>
+        <nav className="space-y-4">
+          <button className="w-full text-left px-3 py-2 rounded-lg bg-zinc-800">
+            Dashboard
+          </button>
+          <button className="w-full text-left px-3 py-2 rounded-lg hover:bg-zinc-800">
+            Projects
+          </button>
+          <button className="w-full text-left px-3 py-2 rounded-lg hover:bg-zinc-800">
+            Profile
+          </button>
+        </nav>
+      </aside>
+
+      {/* Main Content */}
+      <main className="flex-1 p-6 md:p-10">
         {/* Header */}
-        <header className="mb-8">
-          <h1 className="text-3xl font-bold text-gray-900">Crextio</h1>
-          <p className="text-gray-600 mt-2">People management dashboard</p>
-        </header>
-
-        {/* Stats Section */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
-          {/* People Card */}
-          <div className="bg-white rounded-xl shadow-sm p-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">People</h3>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-gray-600">Interviews</span>
-                  <span className="font-semibold">25%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-blue-600 h-2 rounded-full" style={{ width: '25%' }}></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-gray-600">Hired</span>
-                  <span className="font-semibold">51%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-green-600 h-2 rounded-full" style={{ width: '51%' }}></div>
-                </div>
-              </div>
-            </div>
+        <div className="flex items-center justify-between mb-8">
+          <div>
+            <h2 className="text-2xl font-semibold">Dashboard</h2>
+            <p className="text-gray-500">Manage your portfolio projects</p>
           </div>
-
-          {/* Project Time Card */}
-          <div className="bg-white rounded-xl shadow-sm p-6">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Project time</h3>
-            <div className="space-y-4">
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-gray-600">Output</span>
-                  <span className="font-semibold">10%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-purple-600 h-2 rounded-full" style={{ width: '10%' }}></div>
-                </div>
-              </div>
-              <div>
-                <div className="flex justify-between items-center mb-1">
-                  <span className="text-gray-600">Productivity</span>
-                  <span className="font-semibold">14%</span>
-                </div>
-                <div className="w-full bg-gray-200 rounded-full h-2">
-                  <div className="bg-orange-600 h-2 rounded-full" style={{ width: '14%' }}></div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Empty Card for spacing */}
-          <div className="bg-white rounded-xl shadow-sm p-6 opacity-0 md:opacity-100">
-            <h3 className="text-lg font-semibold text-gray-800 mb-4">Additional Metrics</h3>
-            <div className="text-gray-500 text-sm">
-              More metrics coming soon...
-            </div>
-          </div>
+          <button
+            onClick={() => {
+              setOpen(true);
+            }}
+            className="flex items-center gap-2 bg-white text-black px-4 py-2 rounded-xl hover:bg-gray-200 transition"
+          >
+            <Plus size={18} /> New Project
+          </button>
         </div>
 
-        {/* Tabs Section */}
-        <div className="bg-white rounded-xl shadow-sm mb-8 overflow-hidden">
-          <div className="border-b border-gray-200">
-            <div className="flex overflow-x-auto">
-              {tabs.map((tab, index) => (
-                <button
-                  key={index}
-                  className={`px-6 py-4 font-medium text-sm whitespace-nowrap ${index === 0 ? 'text-blue-600 border-b-2 border-blue-600' : 'text-gray-500 hover:text-gray-700'}`}
-                >
-                  {tab}
-                </button>
-              ))}
-            </div>
-          </div>
+        {/* Stats */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mb-10">
+          {[
+            { label: "Total Projects", value: projects.length },
+            {
+              label: "Active",
+              value: projects.filter((p) => p.type === "Active").length,
+            },
+            {
+              label: "Drafts",
+              value: projects.filter((p) => p.type === "Draft").length,
+            },
+          ].map((stat) => (
+            <motion.div
+              key={stat.label}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-zinc-900 border border-zinc-800 rounded-2xl p-6"
+            >
+              <p className="text-gray-500 text-sm">{stat.label}</p>
+              <p className="text-3xl font-bold mt-2">{stat.value}</p>
+            </motion.div>
+          ))}
         </div>
 
-        {/* Table Section */}
-        <div className="bg-white rounded-xl shadow-sm overflow-hidden">
-          {/* Table Headers */}
-          <div className="hidden md:grid grid-cols-8 gap-4 p-6 border-b border-gray-200 bg-gray-50">
-            <div className="col-span-2 font-medium text-gray-700">Name</div>
-            <div className="font-medium text-gray-700">Job title</div>
-            <div className="font-medium text-gray-700">Department</div>
-            <div className="font-medium text-gray-700">Site</div>
-            <div className="font-medium text-gray-700">Salary</div>
-            <div className="font-medium text-gray-700">Start date</div>
-            <div className="font-medium text-gray-700">Status</div>
+        {/* Projects Table */}
+        <div className="bg-zinc-900 border border-zinc-800 rounded-2xl overflow-hidden">
+          <div className="p-6 border-b border-zinc-800">
+            <h3 className="text-lg font-semibold">Projects</h3>
           </div>
-
-          {/* Mobile Table Headers */}
-          <div className="md:hidden grid grid-cols-2 gap-4 p-4 border-b border-gray-200 bg-gray-50">
-            <div className="font-medium text-gray-700">Employee Details</div>
-            <div className="font-medium text-gray-700 text-right">Status & Actions</div>
-          </div>
-
-          {/* Employee Rows */}
-          <div className="divide-y divide-gray-200">
-            {employees.map((employee, index) => (
-              <div key={index} className="p-4 md:p-6 hover:bg-gray-50 transition-colors">
-                {/* Desktop View */}
-                <div className="hidden md:grid grid-cols-8 gap-4 items-center">
-                  <div className="col-span-2">
-                    <div className="font-medium text-gray-900">{employee.name}</div>
-                    <div className="text-sm text-gray-500">{employee.jobTitle}</div>
-                  </div>
-                  <div className="text-gray-700">{employee.jobTitle}</div>
-                  <div>
-                    <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                      {employee.department}
-                    </span>
-                  </div>
-                  <div className="text-gray-700">{employee.site}</div>
-                  <div className="text-gray-700 font-medium">{employee.salary}</div>
-                  <div className="text-gray-700">{employee.startDate}</div>
-                  <div>
-                    <span className={`px-3 py-1 rounded-full text-sm font-medium ${employee.statusColor}`}>
-                      {employee.status}
-                    </span>
-                  </div>
-                </div>
-
-                {/* Mobile View */}
-                <div className="md:hidden">
-                  <div className="grid grid-cols-2 gap-4">
-                    <div>
-                      <div className="font-medium text-gray-900">{employee.name}</div>
-                      <div className="text-sm text-gray-500">{employee.jobTitle}</div>
-                      <div className="mt-2 space-y-1">
-                        <div className="flex items-center">
-                          <span className="text-gray-600 text-sm w-20">Department:</span>
-                          <span className="text-gray-700">{employee.department}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-gray-600 text-sm w-20">Site:</span>
-                          <span className="text-gray-700">{employee.site}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-gray-600 text-sm w-20">Salary:</span>
-                          <span className="text-gray-700 font-medium">{employee.salary}</span>
-                        </div>
-                        <div className="flex items-center">
-                          <span className="text-gray-600 text-sm w-20">Start Date:</span>
-                          <span className="text-gray-700">{employee.startDate}</span>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="flex flex-col items-end justify-between">
-                      <span className={`px-3 py-1 rounded-full text-sm font-medium mb-4 ${employee.statusColor}`}>
-                        {employee.status}
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead className="text-gray-500">
+                <tr className="border-b border-zinc-800">
+                  <th className="text-left p-4">Title</th>
+                  <th className="text-left p-4">Tech</th>
+                  <th className="text-left p-4">Status</th>
+                  <th className="text-right p-4">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {projects.map((project) => (
+                  <motion.tr
+                    key={project.id}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    className="border-b border-zinc-800 hover:bg-zinc-800/50"
+                  >
+                    <td className="p-4">{project.name}</td>
+                    <td className="p-4 text-gray-400">{project.tag || "—"}</td>
+                    <td className="p-4">
+                      <span
+                        className={`px-3 py-1 rounded-full text-xs ${
+                          project.type === "Active"
+                            ? "bg-green-500/20 text-green-400"
+                            : "bg-yellow-500/20 text-yellow-400"
+                        }`}
+                      >
+                        {project.type}
                       </span>
-                      <span className="px-3 py-1 bg-gray-100 text-gray-700 rounded-full text-sm">
-                        {employee.lifecycle}
-                      </span>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            ))}
+                    </td>
+                    <td className="p-4 flex justify-end gap-3">
+                      <button className="hover:text-white text-gray-400">
+                        <Edit size={16} />
+                      </button>
+                      <button
+                        onClick={() => deleteProject(project.id)}
+                        className="hover:text-red-400 text-gray-400"
+                      >
+                        <Trash2 size={16} />
+                      </button>
+                    </td>
+                  </motion.tr>
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
-
-        {/* Footer */}
-        <footer className="mt-8 text-center text-gray-500 text-sm">
-          <p>Crextio People Dashboard • Showing {employees.length} employees</p>
-        </footer>
-      </div>
+        <Dashboard
+          open={open}
+          onClose={() => setOpen(false)}
+          onCreate={(project) => setProjects([...projects, project])}
+        />
+      </main>
     </div>
   );
 }

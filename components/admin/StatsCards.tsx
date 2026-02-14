@@ -1,52 +1,71 @@
 // components/StatsCards.tsx
-import React from 'react'
-import { Users, UserCheck, Clock, BarChart } from 'lucide-react'
+'use client';
 
-const StatsCards = () => {
-  const stats = [
+import { Briefcase, MessageSquare, Star, Mail } from 'lucide-react';
+import { Stats } from '@/lib/types';
+
+interface StatsCardsProps {
+  stats: Stats;
+}
+
+export default function StatsCards({ stats }: StatsCardsProps) {
+  const cards = [
     {
-      title: 'Interviews',
-      value: '25%',
-      icon: Users,
-      color: 'bg-blue-100 text-blue-600',
+      title: 'Total Projects',
+      value: stats.totalProjects,
+      change: '+3',
+      icon: Briefcase,
+      color: 'bg-gradient-to-r from-blue-500 to-cyan-500',
     },
     {
-      title: 'Hired',
-      value: '51%',
-      icon: UserCheck,
-      color: 'bg-green-100 text-green-600',
+      title: 'Active Projects',
+      value: stats.activeProjects,
+      change: '+2',
+      icon: Briefcase,
+      color: 'bg-gradient-to-r from-green-500 to-emerald-500',
     },
     {
-      title: 'Project time',
-      value: '10%',
-      icon: Clock,
-      color: 'bg-yellow-100 text-yellow-600',
+      title: 'Messages',
+      value: stats.totalMessages,
+      subValue: `${stats.unreadMessages} unread`,
+      icon: MessageSquare,
+      color: 'bg-gradient-to-r from-purple-500 to-pink-500',
     },
     {
-      title: 'Output',
-      value: '14%',
-      icon: BarChart,
-      color: 'bg-purple-100 text-purple-600',
+      title: 'Avg. Rating',
+      value: stats.averageRating,
+      subValue: `${stats.totalFeedback} feedback`,
+      icon: Star,
+      color: 'bg-gradient-to-r from-amber-500 to-orange-500',
     },
-  ]
+  ];
 
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      {stats.map((stat) => (
-        <div key={stat.title} className="bg-white rounded-xl p-6 border border-gray-200 shadow-sm">
+      {cards.map((card) => (
+        <div
+          key={card.title}
+          className="bg-white rounded-2xl p-6 shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-200"
+        >
           <div className="flex items-center justify-between">
-            <div>
-              <p className="text-sm text-gray-500 mb-1">{stat.title}</p>
-              <p className="text-2xl font-bold text-gray-800">{stat.value}</p>
+            <div className={`p-3 rounded-xl ${card.color}`}>
+              <card.icon className="h-6 w-6 text-white" />
             </div>
-            <div className={`${stat.color} p-3 rounded-lg`}>
-              <stat.icon className="w-6 h-6" />
+            <span className="text-sm font-medium text-green-600">
+              {card.change}
+            </span>
+          </div>
+          <div className="mt-4">
+            <p className="text-sm font-medium text-gray-600">{card.title}</p>
+            <div className="flex items-baseline mt-2">
+              <p className="text-2xl font-bold text-gray-900">{card.value}</p>
+              {card.subValue && (
+                <p className="ml-2 text-sm text-gray-500">{card.subValue}</p>
+              )}
             </div>
           </div>
         </div>
       ))}
     </div>
-  )
+  );
 }
-
-export default StatsCards

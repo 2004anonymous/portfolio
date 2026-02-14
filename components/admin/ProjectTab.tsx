@@ -1,63 +1,145 @@
-// components/tabs/ProjectsTab.tsx
-import React from 'react'
-import { Calendar, Users, Target, CheckCircle } from 'lucide-react'
+// components/ProjectsTable.tsx
+'use client';
 
-const ProjectsTab = () => {
-  const projects = [
-    { name: 'Website Redesign', progress: 75, team: 8, deadline: 'Dec 15, 2024', status: 'In Progress' },
-    { name: 'Mobile App', progress: 45, team: 5, deadline: 'Jan 20, 2025', status: 'In Progress' },
-    { name: 'API Integration', progress: 100, team: 3, deadline: 'Nov 10, 2024', status: 'Completed' },
-    { name: 'Data Migration', progress: 30, team: 6, deadline: 'Feb 28, 2025', status: 'Planning' },
-  ]
+import { Edit, Trash2, Eye, MoreVertical } from 'lucide-react';
+import { Project } from '@/lib/types';
+import { useState } from 'react';
 
-  return (
-    <div className="space-y-6">
-      <h3 className="text-lg font-semibold text-gray-800">Active Projects</h3>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        {projects.map((project) => (
-          <div key={project.name} className="bg-gray-50 rounded-lg p-6 border border-gray-200">
-            <div className="flex justify-between items-start mb-4">
-              <div>
-                <h4 className="font-medium text-gray-800">{project.name}</h4>
-                <div className="flex items-center space-x-4 mt-2">
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Users className="w-4 h-4 mr-1" />
-                    {project.team} members
-                  </div>
-                  <div className="flex items-center text-sm text-gray-600">
-                    <Calendar className="w-4 h-4 mr-1" />
-                    {project.deadline}
-                  </div>
-                </div>
-              </div>
-              <span className={`px-3 py-1 rounded-full text-xs font-medium ${
-                project.status === 'Completed' ? 'bg-green-100 text-green-800' :
-                project.status === 'In Progress' ? 'bg-blue-100 text-blue-800' :
-                'bg-yellow-100 text-yellow-800'
-              }`}>
-                {project.status}
-              </span>
-            </div>
-            <div className="space-y-2">
-              <div className="flex justify-between text-sm">
-                <span className="text-gray-600">Progress</span>
-                <span className="font-medium">{project.progress}%</span>
-              </div>
-              <div className="h-2 bg-gray-200 rounded-full overflow-hidden">
-                <div 
-                  className={`h-full rounded-full ${
-                    project.status === 'Completed' ? 'bg-green-500' :
-                    'bg-blue-500'
-                  }`}
-                  style={{ width: `${project.progress}%` }}
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-    </div>
-  )
+interface ProjectsTableProps {
+  projects: Project[];
 }
 
-export default ProjectsTab
+export default function ProjectsTable({ projects }: ProjectsTableProps) {
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+
+  const getStatusColor = (status: Project['status']) => {
+    switch (status) {
+      case 'active':
+        return 'bg-green-100 text-green-800';
+      case 'inactive':
+        return 'bg-gray-100 text-gray-800';
+      case 'draft':
+        return 'bg-yellow-100 text-yellow-800';
+      default:
+        return 'bg-gray-100 text-gray-800';
+    }
+  };
+
+  return (
+    <div className="bg-white rounded-2xl shadow-sm border border-gray-200">
+      <div className="px-6 py-4 border-b border-gray-200">
+        <div className="flex items-center justify-between">
+          <h2 className="text-lg font-semibold text-gray-900">Projects</h2>
+          <button className="text-sm font-medium text-indigo-600 hover:text-indigo-700">
+            View All →
+          </button>
+        </div>
+      </div>
+      <div className="overflow-x-auto">
+        <table className="min-w-full divide-y divide-gray-200">
+          <thead>
+            <tr className="bg-gray-50">
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Project
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Category
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Status
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Last Updated
+              </th>
+              <th className="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                Actions
+              </th>
+            </tr>
+          </thead>
+          <tbody className="bg-white divide-y divide-gray-200">
+            {projects.map((project) => (
+              <tr
+                key={project.id}
+                className="hover:bg-gray-50 transition-colors duration-150"
+              >
+                <td className="px-6 py-4">
+                  <div className="flex items-center">
+                    <div className="h-10 w-10 flex-shrink-0 rounded-lg bg-gradient-to-r from-blue-100 to-indigo-100 flex items-center justify-center">
+                      {/* <Briefcase className="h-5 w-5 text-indigo-600" /> */}
+                    </div>
+                    <div className="ml-4">
+                      <div className="text-sm font-medium text-gray-900">
+                        {project.title}
+                      </div>
+                      <div className="text-sm text-gray-500">
+                        {project.description.substring(0, 50)}...
+                      </div>
+                    </div>
+                  </div>
+                </td>
+                <td className="px-6 py-4">
+                  <span className="text-sm text-gray-900">
+                    {project.category}
+                  </span>
+                </td>
+                <td className="px-6 py-4">
+                  <span
+                    className={`inline-flex px-3 py-1 text-xs font-semibold rounded-full ${getStatusColor(
+                      project.status
+                    )}`}
+                  >
+                    {project.status.charAt(0).toUpperCase() +
+                      project.status.slice(1)}
+                  </span>
+                </td>
+                <td className="px-6 py-4 text-sm text-gray-500">
+                  {project.updatedAt.toLocaleDateString()}
+                </td>
+                <td className="px-6 py-4">
+                  <div className="flex items-center space-x-3">
+                    <button
+                      className="text-gray-400 hover:text-indigo-600 transition-colors"
+                      title="Edit"
+                    >
+                      <Edit className="h-5 w-5" />
+                    </button>
+                    <button
+                      className="text-gray-400 hover:text-green-600 transition-colors"
+                      title="View"
+                    >
+                      <Eye className="h-5 w-5" />
+                    </button>
+                    <button
+                      className="text-gray-400 hover:text-red-600 transition-colors"
+                      title="Delete"
+                    >
+                      <Trash2 className="h-5 w-5" />
+                    </button>
+                    <button
+                      className="text-gray-400 hover:text-gray-600 transition-colors"
+                      onClick={() =>
+                        setSelectedProject(
+                          selectedProject === project.id ? null : project.id
+                        )
+                      }
+                    >
+                      <MoreVertical className="h-5 w-5" />
+                    </button>
+                  </div>
+                </td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      {projects.length === 0 && (
+        <div className="text-center py-12">
+          <div className="text-gray-400 mb-4">No projects found</div>
+          <button className="text-indigo-600 hover:text-indigo-700 font-medium">
+            + Create your first project
+          </button>
+        </div>
+      )}
+    </div>
+  );
+}
