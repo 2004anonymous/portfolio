@@ -6,7 +6,6 @@ import Image from "next/image";
 const Footer = () => {
   return (
     <div className="h-auto bg-black py-16 sm:py-20 px-4 sm:px-8 md:px-12 lg:px-20 w-full">
-
       {/* Top CTA Section */}
       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8">
         <div className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl leading-tight lg:leading-[85px]">
@@ -18,7 +17,6 @@ const Footer = () => {
       {/* Divider */}
       <div className="border-y border-slate-50/20 mt-12 mb-8 py-10">
         <div className="flex flex-col lg:flex-row gap-10">
-
           {/* Left Branding */}
           <div className="w-full lg:w-[40%]">
             <div className="flex items-center">
@@ -42,15 +40,14 @@ const Footer = () => {
             </div>
 
             <p className="text-xs text-slate-50/30 leading-5 mt-4 max-w-full lg:pe-20">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Nulla
-              maiores perspiciatis impedit mollitia dicta beatae voluptatem,
-              suscipit, laudantium eos voluptates libero!
+              Full-Stack Developer building scalable, modern, and user-focused
+              applications. Passionate about clean code, performance, and
+              continuous learning.
             </p>
           </div>
 
           {/* Right Info Columns */}
           <div className="w-full lg:w-[60%] grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-
             <div>
               <p className="text-white text-xs">Address</p>
               <p className="text-slate-50/30 leading-5 text-xs mt-5">
@@ -81,7 +78,6 @@ const Footer = () => {
 
         {/* Bottom Row */}
         <div className="flex flex-col md:flex-row items-center justify-between gap-6 mt-10">
-
           <div className="flex items-center space-x-6">
             <Instagram size={18} />
             <Facebook size={18} />

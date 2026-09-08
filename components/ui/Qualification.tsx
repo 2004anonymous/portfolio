@@ -11,14 +11,13 @@ const Qualification = () => {
       {/* Intro Row */}
       <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6 pb-6 mt-6">
         <div className="text-xl sm:text-2xl text-white leading-8 sm:leading-10 lg:max-w-[45%] font-[200]">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Rerum
-          possimus doloremque reprehenderit saepe,
+          A combination of academic learning and real-world experience that has
+          shaped my growth as a full-stack developer.
         </div>
 
         <p className="text-xs sm:text-sm text-slate-50/40 leading-5 lg:max-w-[30%] text-left lg:text-end hover:text-white transition-colors duration-300">
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Recusandae
-          nesciunt itaque quae, saepe ab voluptate impedit atque autem fuga non
-          optio pariatur sequi ipsa explicabo.
+          📌Built on strong academic foundations and strengthened through
+          real-world development experience.
         </p>
       </div>
 
@@ -63,7 +62,6 @@ const ExperienceCard = ({
 }: ExperienceCardProps) => {
   return (
     <div className="transition-all duration-300 hover:px-4 sm:hover:px-10 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 py-6 sm:py-9 bg-gradient-to-r from-transparent via-slate-50/10 to-transparent rounded-xl">
-      
       <div>
         <h4 className="text-lg sm:text-xl text-white">{title}</h4>
         <p className="text-slate-50/50 text-xs sm:text-sm mt-2 max-w-full sm:max-w-[80%]">

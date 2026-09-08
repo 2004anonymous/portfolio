@@ -5,10 +5,30 @@ import { ArrowUpRight, ChevronLeft, ChevronRight } from "lucide-react";
 import LargeWorkCard from "../widgets/LargeWorkCard";
 
 const WorkCard = [
-  { id: 1, projectImage: "/img_pone.webp", title: "Project One", description: "Description for project one." },
-  { id: 2, projectImage: "/img_ptwo.webp", title: "Project Two", description: "Description for project two." },
-  { id: 3, projectImage: "/img_pthree.webp", title: "Project Three", description: "Description for project three." },
-  { id: 4, projectImage: "/img_pone.webp", title: "Project Four", description: "Description for project four." },
+  {
+    id: 1,
+    projectImage: "/img_pone.webp",
+    title: "Project One",
+    description: "Description for project one.",
+  },
+  {
+    id: 2,
+    projectImage: "/img_ptwo.webp",
+    title: "Project Two",
+    description: "Description for project two.",
+  },
+  {
+    id: 3,
+    projectImage: "/img_pthree.webp",
+    title: "Project Three",
+    description: "Description for project three.",
+  },
+  {
+    id: 4,
+    projectImage: "/img_pone.webp",
+    title: "Project Four",
+    description: "Description for project four.",
+  },
 ];
 
 const Work = () => {
@@ -49,7 +69,6 @@ const Work = () => {
 
   return (
     <div className="relative min-h-screen w-full py-16 sm:py-20 bg-[#A6A09B] overflow-x-hidden">
-      
       {/* Header Section */}
       <div className="px-4 sm:px-6 md:px-10 lg:px-20">
         <span className="text-xs sm:text-sm text-white capitalize font-ms">
@@ -57,7 +76,6 @@ const Work = () => {
         </span>
 
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 mt-4">
-
           {/* Left Heading */}
           <div className="text-3xl sm:text-4xl md:text-5xl leading-tight md:leading-[60px] font-zlbold uppercase">
             <span className="text-red-primary">Highlights</span> of <br />
@@ -67,10 +85,9 @@ const Work = () => {
           {/* Right Description */}
           <div className="w-full lg:w-[40%]">
             <p className="text-black text-sm leading-5 font-ms">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Consectetur pariatur voluptatem, architecto maiores debitis
-              deserunt sequi dolorem dolor quo amet soluta quis atque ipsam
-              veritatis natus aperiam, magni odit eaque.
+              A collection of projects and experiences that showcase my
+              technical skills, growth, and passion for building meaningful
+              software.
             </p>
 
             <Button
